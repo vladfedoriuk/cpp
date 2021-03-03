@@ -1,17 +1,42 @@
-#include"ans.h"
-#include"decoder.h"
+#include"object.h"
+#include"cube.h"
+#include"sphere.h"
+#include"rectangular_prism.h"
+#include<iostream>
+
+using namespace std;
+
 int main() {
-	std::string file_name = "data.txt";
-	ANS tans(file_name, 18);
-	std::string encoded_file = "encoded.txt";
-	std::vector<char> bits = tans.encode(encoded_file);
-	//std::string decoded_file = "decoded.txt";
-	Decoder decoder(encoded_file);
-	std::vector<char> dec = decoder.decode();
-	for (char c : dec) {
-		std::cout << c;
-	}
-	std::cout << std::endl;
+
+	Object_3d *fg;
+	Rectangular_prism p1(2.5, 4, 3);
+	Sphere k1(3);
+	Sphere circle(3);
+
+	cout << p1.pole_pow() << endl;
+	fg = &p1;
+	cout << fg->pole_pow() << endl;
+	cout << fg->obj() << endl;
+
+	cout << k1.pole_pow() << endl;
+	cout << k1.obj() << endl;
+	fg = &k1;
+	cout << fg->pole_pow() << endl;
+	cout << fg->obj() << endl;
+
+	cout << circle.pole_pow() << endl;
+	fg = &circle;
+	cout << fg->pole_pow() << endl;
+	cout << fg->obj() << endl;
+
+	fg = new Sphere(4);
+
+	delete fg;
+
+	Cube t = Cube(3);
+	fg = &t;
+	cout << fg->pole_pow() << endl;
 	system("pause");
+
 	return 0;
 }
